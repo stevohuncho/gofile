@@ -3,8 +3,6 @@ package gofile
 import (
 	"encoding/json"
 	"os"
-
-	"github.com/tidwall/gjson"
 )
 
 func WriteJson(path string, d any) (err error) {
@@ -61,21 +59,6 @@ func AppendString(path string, s string) (err error) {
 	if _, err := f.WriteString(s); err != nil {
 		return err
 	}
-	return nil
-}
-
-func AppendJson(path string, d any, jsonPath string) (err error) {
-
-	err = Json(path, d)
-	if err != nil {
-		return err
-	}
-	b, err := json.Marshal(d)
-	if err != nil {
-		return err
-	}
-	gjson.ParseBytes(b).Get(jsonPath).Array()
-
 	return nil
 }
 
