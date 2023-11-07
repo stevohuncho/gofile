@@ -1,4 +1,4 @@
-module github.com/stevohuncho/GoFile
+module github.com/stevohuncho/gofile
 
 go 1.21.0
 
