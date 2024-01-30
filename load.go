@@ -174,9 +174,9 @@ func ReadDir(path string, opts ...ReadDirOptFunc) (files []fs.DirEntry, err erro
 	}
 
 	if len(rdOpts.suffix) != 0 {
-		files = filterFilesSuffix(unfilteredFiles, rdOpts.suffix)
+		unfilteredFiles = filterFilesSuffix(unfilteredFiles, rdOpts.suffix)
 	}
-	files = filterFilesType(files, rdOpts.filter)
+	files = filterFilesType(unfilteredFiles, rdOpts.filter)
 
 	return files, nil
 }
@@ -194,9 +194,9 @@ func ReadDirNames(path string, opts ...ReadDirOptFunc) (fileNames []string, err 
 
 	var files []fs.DirEntry
 	if len(rdOpts.suffix) != 0 {
-		files = filterFilesSuffix(unfilteredFiles, rdOpts.suffix)
+		unfilteredFiles = filterFilesSuffix(unfilteredFiles, rdOpts.suffix)
 	}
-	files = filterFilesType(files, rdOpts.filter)
+	files = filterFilesType(unfilteredFiles, rdOpts.filter)
 
 	for _, file := range files {
 		fileNames = append(fileNames, file.Name())
